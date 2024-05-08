@@ -1,7 +1,6 @@
 "use client";
 import react, { useState, useEffect } from "react";
 import Head from "next/head";
-import SmoothScroll from "smooth-scroll";
 import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
 export default function Home() {
@@ -46,13 +45,6 @@ export default function Home() {
 	//   }
 	// };
 
-	useEffect(() => {
-		new SmoothScroll('a[href*="#"]', {
-			speed: 800,
-			speedAsDuration: true,
-		});
-	}, []);
-
 	return (
 		<>
 			<SnackbarProvider
@@ -91,8 +83,14 @@ export default function Home() {
 									</p>
 									<a
 										href='#work'
-										className='btn btn-default smoothScroll wow fadeInUp'
+										className='btn btn-default wow fadeInUp'
 										data-wow-delay='1s'
+										onClick={(event) => {
+											event.preventDefault();
+											document
+												.querySelector("#work")
+												.scrollIntoView({ behavior: "smooth" });
+										}}
 									>
 										Découvrir
 									</a>
