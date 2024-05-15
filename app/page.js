@@ -65,7 +65,7 @@ export default function Home() {
 								<div className='col-md-8 wow fadeIn' data-wow-delay='0.9s'>
 									<h2>Développeur Web Fullstack</h2>
 									<h1 style={{ color: "red" }}>DIAWARA ALPHA MALICK</h1>
-									<h2 className='rotate'>Bienvenu sur mon portfolio !</h2>
+									<h2 className='rotate'>Bienvenue sur mon portfolio !</h2>
 									<p style={{ color: "white" }}>
 										Hello ! Je m'appelle Diawara Alpha Malick , développeur web
 										junior. <br />
