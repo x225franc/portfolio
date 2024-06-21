@@ -348,7 +348,7 @@ export default function Home() {
 										data-wow-delay='0.6s'
 									>
 										<div className='portfolio-thumb'>
-											<a href='#'>
+											<a target='_blank' href='https://betterplan.vercel.app/'>
 												<img
 													src='images/portfolio-img6.jpg'
 													className='img-responsive'
