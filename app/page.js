@@ -189,6 +189,7 @@ export default function Home() {
 												alt=''
 												style={{
 													border: "1px solid black",
+													maxWidth: "70%",
 													// width: "50%",
 													// marginLeft: "10vw",
 												}}
