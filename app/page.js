@@ -175,9 +175,12 @@ export default function Home() {
 							justifyContent: "center",
 							alignItems: "center",
 							height: "100vh",
+							margin: "0", // Ensure no margin is affecting the centering
+							padding: "0", // Ensure no padding is affecting the centering
+							boxSizing: "border-box", // Include padding and border in the element's total width and height
 						}}
 					>
-						<div className='container'>
+						<div className='container' style={{ textAlign: "center" }}>
 							<div className='row'>
 								<div>
 									<h2>COMPÉTENCES</h2>
@@ -195,8 +198,6 @@ export default function Home() {
 												style={{
 													border: "1px solid black",
 													maxWidth: "70%",
-													// width: "50%",
-													// marginLeft: "10vw",
 												}}
 											/>{" "}
 										</a>
