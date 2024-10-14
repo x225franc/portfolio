@@ -68,7 +68,7 @@ export default function Home() {
 									<h2 className='rotate'>Bienvenue sur mon portfolio !</h2>
 									<p style={{ color: "white" }}>
 										Hello ! Je m'appelle Diawara Alpha Malick , développeur web
-										junior. <br />
+										fullstack. <br />
 										J'ai au cours de mes années d'études pu acquérir des
 										compétences en développement web <br />
 										(HTML - CSS - PHP - SYMFONY - JS - REACT - MYSQL - GIT){" "}
@@ -78,7 +78,7 @@ export default function Home() {
 										Déterminé et surtout passionné par l'informatique ,<br /> je
 										me documente constamment sur les avancées dans ce domaine!{" "}
 										<br />
-										Actuellement étudiant en Bac +4 , je me vois dans 5 ans
+										Actuellement étudiant en formnation , je me vois dans 5 ans
 										comme développeur fullstack polyvalent.
 									</p>
 									<a
@@ -119,11 +119,11 @@ export default function Home() {
 										</div>
 										<div className='media-body'>
 											<h3 className='media-heading'>
-												Étudiant à l'INSTITUT G4
+												Étudiant
 											</h3>
 											<p>
-												Cycle ingénierie - Chef de projet SI <br />{" "}
-												Spécialisation Informatique et Management (Bac +5){" "}
+												INGÉNIERIE WEB <br />{" "}
+												EXPERT EN INGÉNIERIE INFORMATIQUE (Bac +5){" "}
 												<br /> Préparation au Titre RNCP de niveau 7
 											</p>
 										</div>
@@ -159,7 +159,7 @@ export default function Home() {
 											<i className='fa fa-laptop'></i>
 										</div>
 										<div className='media-body'>
-											<h3 className='media-heading'>Développeur web junior</h3>
+											<h3 className='media-heading'>Développeur web fullstack</h3>
 											<p>Fort de 2 années d'expériences dans le domaine.</p>
 										</div>
 									</div>
@@ -189,14 +189,14 @@ export default function Home() {
 												alt=''
 												style={{
 													border: "1px solid black",
-													width: "50%",
-													marginLeft: "10vw",
+													// width: "50%",
+													// marginLeft: "10vw",
 												}}
 											/>{" "}
 										</a>
 									</div>
 								</div>
-								<div
+								{/* <div
 									className='col-md-6 col-xs-11 wow fadeInRight'
 									data-wow-delay='0.9s'
 								>
@@ -304,7 +304,7 @@ export default function Home() {
 											style={{ width: "50%" }}
 										></div>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>
