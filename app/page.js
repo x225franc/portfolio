@@ -167,7 +167,16 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div id='about' className='section'>
+					<div
+						id='about'
+						className='section'
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							height: "100vh",
+						}}
+					>
 						<div className='container'>
 							<div className='row'>
 								<div>
@@ -185,7 +194,7 @@ export default function Home() {
 												alt=''
 												style={{
 													border: "1px solid black",
-													maxWidth: "80%",
+													maxWidth: "70%",
 													// width: "50%",
 													// marginLeft: "10vw",
 												}}
@@ -193,115 +202,6 @@ export default function Home() {
 										</a>
 									</div>
 								</div>
-								{/* <div
-									className='col-md-6 col-xs-11 wow fadeInRight'
-									data-wow-delay='0.9s'
-								>
-									<span className='text-top'>
-										HTML5 , CSS3 , PHP <small>70%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "70%" }}
-										></div>
-									</div>
-									<span>
-										JAVASCRIPT <small>50%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='80'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "50%" }}
-										></div>
-									</div>
-									<span>
-										SYMFONY <small>40%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "40%" }}
-										></div>
-									</div>
-									<span>
-										MYSQL <small>70%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "70%" }}
-										></div>
-									</div>
-									<span>
-										REACT <small>40%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "40%" }}
-										></div>
-									</div>
-									<span>
-										NODEJS <small>40%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "40%" }}
-										></div>
-									</div>
-									<span>
-										BOOTSTRAP, TAILWIND <small>40%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "40%" }}
-										></div>
-									</div>
-									<span>
-										GIT <small>50%</small>
-									</span>
-									<div className='progress'>
-										<div
-											className='progress-bar progress-bar-danger'
-											role='progressbar'
-											aria-valuenow='60'
-											aria-valuemin='0'
-											aria-valuemax='100'
-											style={{ width: "50%" }}
-										></div>
-									</div>
-								</div> */}
 							</div>
 						</div>
 					</div>
