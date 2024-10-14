@@ -118,13 +118,10 @@ export default function Home() {
 											<i className='fa fa-graduation-cap'></i>
 										</div>
 										<div className='media-body'>
-											<h3 className='media-heading'>
-												Étudiant
-											</h3>
+											<h3 className='media-heading'>Étudiant</h3>
 											<p>
-												INGÉNIERIE WEB <br />{" "}
-												EXPERT EN INGÉNIERIE INFORMATIQUE (Bac +5){" "}
-												<br /> Préparation au Titre RNCP de niveau 7
+												INGÉNIERIE WEB <br /> EXPERT EN INGÉNIERIE INFORMATIQUE
+												(Bac +5) <br /> Préparation au Titre RNCP de niveau 7
 											</p>
 										</div>
 									</div>
@@ -159,7 +156,9 @@ export default function Home() {
 											<i className='fa fa-laptop'></i>
 										</div>
 										<div className='media-body'>
-											<h3 className='media-heading'>Développeur web fullstack</h3>
+											<h3 className='media-heading'>
+												Développeur web fullstack
+											</h3>
 											<p>Fort de 2 années d'expériences dans le domaine.</p>
 										</div>
 									</div>
@@ -171,10 +170,7 @@ export default function Home() {
 					<div id='about' className='section'>
 						<div className='container'>
 							<div className='row'>
-								<div
-									className='col-md-6 col-xs-11 wow fadeInLeft'
-									data-wow-delay='0.9s'
-								>
+								<div>
 									<h2>COMPÉTENCES</h2>
 									<h4>DÉVELOPPEUR WEB</h4>
 									<p>
