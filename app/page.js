@@ -191,7 +191,7 @@ export default function Home() {
 										<br />
 									</p>
 									<div>
-										<a href='uploads/CV_dl.pdf' target='_blank'>
+										<a href='uploads/CV.pdf' target='_blank'>
 											<img
 												src='uploads/CV.png'
 												alt=''
