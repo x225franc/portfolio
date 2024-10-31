@@ -78,7 +78,7 @@ export default function Home() {
 										Déterminé et surtout passionné par l'informatique ,<br /> je
 										me documente constamment sur les avancées dans ce domaine!{" "}
 										<br />
-										Actuellement étudiant en formnation , je me vois dans 5 ans
+										Actuellement étudiant en formation , je me vois dans 5 ans
 										comme développeur fullstack polyvalent.
 									</p>
 									<a
