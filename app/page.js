@@ -8,11 +8,12 @@ export default function Home() {
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
 	const [submitted, setSubmitted] = useState(false);
+	const [sending, setSending] = useState(false);
 	const [toast, setToast] = useState(null);
 
 	const showToast = (msg, type) => {
 		setToast({ msg, type });
-		setTimeout(() => setToast(null), 3000);
+		setTimeout(() => setToast(null), 4000);
 	};
 
 	const scrollTo = (id) => {
@@ -21,7 +22,7 @@ export default function Home() {
 	};
 
 	useEffect(() => {
-		const sections = ["home", "about", "skills", "projects", "contact"];
+		const sections = ["home", "about", "skills", "cv", "projects", "contact"];
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((e) => {
@@ -37,12 +38,29 @@ export default function Home() {
 		return () => observer.disconnect();
 	}, []);
 
-	const handleSubmit = () => {
-		if (name && email && message) {
-			setSubmitted(true);
-			showToast("Votre message a bien été envoyé !", "success");
-		} else {
+	const handleSubmit = async () => {
+		if (!name || !email || !message) {
 			showToast("Veuillez remplir tous les champs !", "error");
+			return;
+		}
+		setSending(true);
+		try {
+			const res = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ name, email, message }),
+			});
+			const data = await res.json();
+			if (res.ok) {
+				setSubmitted(true);
+				showToast("Message envoyé avec succès !", "success");
+			} else {
+				showToast(data.error || "Erreur lors de l'envoi.", "error");
+			}
+		} catch {
+			showToast("Impossible de contacter le serveur.", "error");
+		} finally {
+			setSending(false);
 		}
 	};
 
@@ -152,13 +170,13 @@ export default function Home() {
 		{ id: "home", label: "Accueil" },
 		{ id: "about", label: "À propos" },
 		{ id: "skills", label: "Compétences" },
+		{ id: "cv", label: "CV" },
 		{ id: "projects", label: "Projets" },
 		{ id: "contact", label: "Contact" },
 	];
 
 	return (
 		<>
-			{/* Animated Background */}
 			<div className='bg-scene'>
 				<div className='orb orb1' />
 				<div className='orb orb2' />
@@ -166,7 +184,6 @@ export default function Home() {
 				<div className='grid-overlay' />
 			</div>
 
-			{/* Navigation */}
 			<nav className={`portfolio-nav${menuOpen ? " open" : ""}`}>
 				{navLinks.map((link) => (
 					<button
@@ -186,7 +203,7 @@ export default function Home() {
 			</nav>
 
 			<div className='page-wrap'>
-				{/* ---- HOME ---- */}
+				{/* HOME */}
 				<section id='home' className='portfolio-section home-section'>
 					<div className='portfolio-container home-container'>
 						<div className='badge'>
@@ -226,7 +243,7 @@ export default function Home() {
 
 				<div className='portfolio-divider' />
 
-				{/* ---- ABOUT ---- */}
+				{/* ABOUT */}
 				<section id='about' className='portfolio-section'>
 					<div className='portfolio-container'>
 						<p className='section-tag'>01 — À propos</p>
@@ -365,7 +382,7 @@ export default function Home() {
 
 				<div className='portfolio-divider' />
 
-				{/* ---- SKILLS ---- */}
+				{/* SKILLS */}
 				<section id='skills' className='portfolio-section'>
 					<div className='portfolio-container'>
 						<p className='section-tag'>02 — Compétences</p>
@@ -384,10 +401,127 @@ export default function Home() {
 
 				<div className='portfolio-divider' />
 
-				{/* ---- PROJECTS ---- */}
+				{/* CV */}
+				<section id='cv' className='portfolio-section'>
+					<div className='portfolio-container'>
+						<p className='section-tag'>03 — Curriculum Vitæ</p>
+						<h2 className='section-title'>Mon CV</h2>
+						<div className='section-line' />
+						<div className='cv-layout'>
+							<div className='cv-preview-wrap glass'>
+								<div className='cv-preview-header'>
+									<span className='cv-preview-label'>Aperçu</span>
+									<div className='cv-preview-dots'>
+										<span />
+										<span />
+										<span />
+									</div>
+								</div>
+								<a
+									href='/uploads/CV.pdf'
+									target='_blank'
+									rel='noopener noreferrer'
+									className='cv-img-link'
+								>
+									<img
+										src='/uploads/CV.png'
+										alt='Aperçu CV Alpha Malick Diawara'
+										className='cv-img'
+									/>
+									<div className='cv-img-overlay'>
+										<svg
+											width='24'
+											height='24'
+											viewBox='0 0 24 24'
+											fill='none'
+											stroke='currentColor'
+											strokeWidth='2'
+										>
+											<path d='M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6' />
+											<polyline points='15 3 21 3 21 9' />
+											<line x1='10' y1='14' x2='21' y2='3' />
+										</svg>
+										Ouvrir en plein écran
+									</div>
+								</a>
+							</div>
+							<div className='cv-info'>
+								<div className='glass cv-info-card'>
+									<div className='cv-info-icon'>📄</div>
+									<h3 className='cv-info-title'>Alpha Malick Diawara</h3>
+									<p className='cv-info-sub'>
+										Développeur Fullstack — Bac+5 en cours
+									</p>
+									<div className='cv-meta-list'>
+										<div className='cv-meta-item'>
+											<span className='cv-meta-icon'>🎓</span>
+											<span>ESGI Paris — Ingénierie du Web</span>
+										</div>
+										<div className='cv-meta-item'>
+											<span className='cv-meta-icon'>💼</span>
+											<span>Alternant RATP · Paris</span>
+										</div>
+										<div className='cv-meta-item'>
+											<span className='cv-meta-icon'>🌍</span>
+											<span>Français natif · Anglais B2</span>
+										</div>
+										<div className='cv-meta-item'>
+											<span className='cv-meta-icon'>⚡</span>
+											<span>PHP · Symfony · React · VueJS · NodeJS</span>
+										</div>
+									</div>
+									<div className='cv-ctas'>
+										<a
+											href='/uploads/CV.pdf'
+											download='CV_Alpha_Malick_Diawara.pdf'
+											className='btn-primary cv-btn'
+										>
+											<svg
+												width='16'
+												height='16'
+												viewBox='0 0 24 24'
+												fill='none'
+												stroke='currentColor'
+												strokeWidth='2.5'
+											>
+												<path d='M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4' />
+												<polyline points='7 10 12 15 17 10' />
+												<line x1='12' y1='15' x2='12' y2='3' />
+											</svg>
+											Télécharger le CV
+										</a>
+										<a
+											href='/uploads/CV.pdf'
+											target='_blank'
+											rel='noopener noreferrer'
+											className='btn-ghost cv-btn'
+										>
+											<svg
+												width='16'
+												height='16'
+												viewBox='0 0 24 24'
+												fill='none'
+												stroke='currentColor'
+												strokeWidth='2'
+											>
+												<path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
+												<circle cx='12' cy='12' r='3' />
+											</svg>
+											Voir en ligne
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div className='portfolio-divider' />
+
+				{/* PROJECTS */}
 				<section id='projects' className='portfolio-section'>
 					<div className='portfolio-container'>
-						<p className='section-tag'>03 — Projets</p>
+						<p className='section-tag'>04 — Projets</p>
 						<h2 className='section-title'>Ce que j'ai créé</h2>
 						<div className='section-line' />
 						<div className='projects-grid'>
@@ -429,10 +563,10 @@ export default function Home() {
 
 				<div className='portfolio-divider' />
 
-				{/* ---- CONTACT ---- */}
+				{/* CONTACT */}
 				<section id='contact' className='portfolio-section'>
 					<div className='portfolio-container'>
-						<p className='section-tag'>04 — Contact</p>
+						<p className='section-tag'>05 — Contact</p>
 						<h2 className='section-title'>Travaillons ensemble</h2>
 						<div className='section-line' />
 						<div className='contact-grid'>
@@ -555,8 +689,9 @@ export default function Home() {
 										<button
 											className='btn-primary btn-full'
 											onClick={handleSubmit}
+											disabled={sending}
 										>
-											Envoyer le message →
+											{sending ? "Envoi en cours..." : "Envoyer le message →"}
 										</button>
 									</>
 								)}

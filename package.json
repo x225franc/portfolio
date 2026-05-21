@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "14.2.3",
+    "nodemailer": "^8.0.7",
     "notistack": "^3.0.1",
     "portfolio": "file:",
     "react": "^18",
