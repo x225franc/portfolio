@@ -1,0 +1,9 @@
+services:
+  portfolio:
+    build: .
+    ports:
+      - "3080:3000"
+    env_file:
+      - path: .env.local
+        required: false
+    restart: unless-stopped

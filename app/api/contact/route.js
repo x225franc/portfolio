@@ -1,12 +1,27 @@
 import nodemailer from "nodemailer";
 
+const escapeHtml = (str) =>
+	String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function POST(req) {
 	try {
-		const { name, email, message } = await req.json();
+		const body = await req.json();
+		const name = String(body.name || "").trim().slice(0, 100);
+		const email = String(body.email || "").trim().slice(0, 200);
+		const message = String(body.message || "").trim().slice(0, 5000);
 
 		if (!name || !email || !message) {
 			return Response.json({ error: "Champs manquants" }, { status: 400 });
 		}
+		if (!EMAIL_RE.test(email)) {
+			return Response.json({ error: "Adresse email invalide" }, { status: 400 });
+		}
+
+		const safeName = escapeHtml(name);
+		const safeEmail = escapeHtml(email);
+		const safeMessage = escapeHtml(message).replace(/\n/g, "<br/>");
 
 		const transporter = nodemailer.createTransport({
 			host: process.env.MAIL_HOST,
@@ -22,7 +37,7 @@ export async function POST(req) {
 			from: `"Portfolio Contact" <${process.env.MAIL_USER}>`,
 			to: "diawaraalphamalick225@gmail.com",
 			replyTo: email,
-			subject: `📬 Nouveau message de ${name}`,
+			subject: `📬 Nouveau message de ${name.replace(/[\r\n]/g, " ")}`,
 			html: `
         <div style="font-family: 'Poppins', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #050a14; color: #e2e8f0; border-radius: 16px; overflow: hidden;">
             <div style="background: linear-gradient(135deg, #38bdf8, #818cf8); padding: 32px; text-align: center;">
@@ -33,20 +48,20 @@ export async function POST(req) {
                 <table style="width: 100%; border-collapse: collapse;">
                 <tr>
                     <td style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; width: 100px;">Nom</td>
-                    <td style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #e2e8f0; font-size: 15px;">${name}</td>
+                    <td style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #e2e8f0; font-size: 15px;">${safeName}</td>
                 </tr>
                 <tr>
                     <td style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #94a3b8; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">Email</td>
-                    <td style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #38bdf8; font-size: 15px;">${email}</td>
+                    <td style="padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); color: #38bdf8; font-size: 15px;">${safeEmail}</td>
                 </tr>
                 <tr>
                     <td style="padding: 12px 0; color: #94a3b8; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; vertical-align: top; padding-top: 16px;">Message</td>
-                    <td style="padding: 12px 0; padding-top: 16px; color: #e2e8f0; font-size: 15px; line-height: 1.7;">${message.replace(/\n/g, "<br/>")}</td>
+                    <td style="padding: 12px 0; padding-top: 16px; color: #e2e8f0; font-size: 15px; line-height: 1.7;">${safeMessage}</td>
                 </tr>
                 </table>
                 <div style="margin-top: 32px; text-align: center;">
-                <a href="mailto:${email}" style="display: inline-block; background: linear-gradient(135deg, #38bdf8, #818cf8); color: #050a14; text-decoration: none; padding: 12px 28px; border-radius: 100px; font-weight: 700; font-size: 14px;">
-                    Répondre à ${name} →
+                <a href="mailto:${safeEmail}" style="display: inline-block; background: linear-gradient(135deg, #38bdf8, #818cf8); color: #050a14; text-decoration: none; padding: 12px 28px; border-radius: 100px; font-weight: 700; font-size: 14px;">
+                    Répondre à ${safeName} →
                 </a>
                 </div>
             </div>
